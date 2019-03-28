@@ -1,0 +1,17 @@
+{% extends "datacleaning/base.html" %}
+{% block content %}
+	<form method="post" id="formulaire" action="/datacleaning/login">
+		<fieldset>
+			{% csrf_token %}
+			{{form.as_p}}
+			<button class="btn" type="submit" value="login">
+				login
+			</button>
+		</fieldset>
+	</form><br>
+	or 
+	<a href="/datacleaning/register">
+		<strong> create new account </strong>
+	</a>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "datacleaning/base.html" %}
+{% block content %}
+	<form method="POST" id="formulaire-register" action="/datacleaning/register">
+			{% csrf_token %}
+			{{form.as_p}}
+
+			<select>
+				<option>user</option>
+				<option>company</option>
+			</select>
+			<button class="btn waves-effect waves-light" type="submit" name="action">
+			    Register
+			</button>
+	</form>
+{% endblock %}

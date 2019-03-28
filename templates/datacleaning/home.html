@@ -1,0 +1,32 @@
+{% extends "datacleaning/base.html" %}
+{% block content %}
+	{% if user.is_authenticated %}
+		score : {{score}}
+		<table>
+				{% for adr in adresses %}
+					<tr><td>
+						{{adr.company}}, <br>
+						{{adr.street}}, <br>
+						{{adr.city}}, <br>
+						{{adr.zipc}}, {{adr.state}},<br>
+						{{adr.country}}.
+					</td></tr>
+				{% endfor %}
+				</table>
+		<form method="post" action="/datacleaning/result">
+			<fieldset>
+				{% csrf_token %}
+				{{form.as_p}}
+				<label for="file">Or choose a csv file :</label>
+				{{file_form.as_p}}
+				<button class="btn" type="submit" name="check" value="check">
+					Check
+				</button>
+			</fieldset>
+		</form>
+	{% else %}
+		<p> NOTE: If you already have an account with us, please login at 
+			<a href="/datacleaning/login"> the login page.</a> </p>
+	{% endif %}
+{% endblock %}
+

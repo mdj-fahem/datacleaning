@@ -1,0 +1,13 @@
+{% extends "datacleaning/base.html" %}
+{% block content %}
+	<strong>username : {{user.username}}</strong>
+
+	<form method="post" action="/datacleaning/delete">
+		<fieldset>
+			{% csrf_token %}
+			<button class="btn-danger" type="submit" value="delete">
+				Delete account
+			</button>
+		</fieldset>
+	</form><br>
+{% endblock %}

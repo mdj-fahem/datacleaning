@@ -1,0 +1,30 @@
+
+{% extends "datacleaning/base.html" %}
+{% block content %}
+	{% if user.is_authenticated %}
+	{{uploaded_file_url}}
+	{{filename}}
+			{% if adresses_scores %}
+				resultats de votre recherche : <br>
+				<table>
+				{% for adr, score in adresses_scores %}
+					<tr>
+						<td>
+							{{adr.company}}, <br>
+							{{adr.street}}, <br>
+							{{adr.city}}, <br>
+							{{adr.zipc}}, {{adr.state}},<br>
+							{{adr.country}}.
+						</td>
+						<td>
+							{{score}}%.
+						</td>
+					</tr>
+				{% endfor %}
+				</table>
+
+			{% else %}
+				aucun résultat trouvé !
+			{% endif %}
+	{% endif %}
+{% endblock %}
