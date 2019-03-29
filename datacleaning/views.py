@@ -14,6 +14,7 @@ def home(request):
 	#Adress.objects.all().delete()
 	#load_csv_adresses("ReferenceDB.csv")
 	#adresses = Adress.objects.all().order_by('-id')[:10]
+	nb_adresses = Adress.objects.all().count()
 	form = AdressForm
 	file_form = UploadFileForm()
 	return render(request, 'datacleaning/home.html', locals())

@@ -59,7 +59,7 @@ def matching(adresse):
 	adresses = list()
 	scores = list()
 	for adr in Adress.objects.all().order_by('-id'):
-		score = score_matching(adresse, adr)
+		score = score_matching(adr, adresse)
 		if score > 70:
 			adresses.append(adr)
 			scores.append(score)
@@ -73,22 +73,22 @@ def matching(adresse):
 # renvoi le score de matching entre deux adresse
 def score_matching(adress1, adress2):
 	nb, score = 0,0
-	if adress1.company and adress2.company:
+	if adress1.company and adress2.company and adress2.company.find("NONE")==-1:
 		score = fuzz.token_sort_ratio(adress1.company, adress2.company)*5
 		nb = 5
-	if adress1.street and adress2.street:
+	if adress1.street and adress2.street and adress2.street.find("NONE")==-1:
 		score += fuzz.partial_ratio(adress1.street, adress2.street)
 		nb+=1
-	if adress1.city and adress2.city:
+	if adress1.city and adress2.city and adress2.city.find("NONE")==-1:
 		score += fuzz.partial_ratio(adress1.city, adress2.city)
 		nb+=1
-	if adress1.state and adress2.state:
+	if adress1.state and adress2.state and adress2.state.find("NONE")==-1:
 		score += fuzz.partial_ratio(adress1.state, adress2.state)
 		nb+=1
-	if adress1.zipc and adress2.zipc:
+	if adress1.zipc and adress2.zipc and adress2.zipc.find("NONE")==-1:
 		score += fuzz.partial_ratio(adress1.zipc, adress2.zipc)
 		nb+=1
-	if adress1.country and adress2.country:
+	if adress1.country and adress2.country and adress2.country.find("NONE")==-1:
 		score += fuzz.partial_ratio(adress1.country, adress2.country)
 		nb+=1
 	if nb > 0:

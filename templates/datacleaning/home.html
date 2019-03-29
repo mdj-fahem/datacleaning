@@ -1,7 +1,7 @@
 {% extends "datacleaning/base.html" %}
 {% block content %}
 	{% if user.is_authenticated %}
-		score : {{score}}
+		nb adresses in the database : {{nb_adresses}}
 		<table>
 				{% for adr in adresses %}
 					<tr><td>
